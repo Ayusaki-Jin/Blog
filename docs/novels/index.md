@@ -1,19 +1,13 @@
 ---
-title: テスト記事のタイトル
-date: 2025-05-22
-tags: ['テスト', 'サンプル', 'VitePress']
+title: 小説作品一覧
+layout: doc
+editLink: false
 ---
 
-# テスト記事のタイトル
+# 小説作品一覧
 
-これはテスト記事です。VitePressでブログを構築するテストとして作成しました。
+<script setup>
+import { data as articles } from '../.vitepress/theme/data/novels.data.js'
+</script>
 
-## 見出しレベル2
-
-テキストの**強調**や*斜体*も使えます。
-
-- リスト項目1
-- リスト項目2
-- リスト項目3
-
-[トップページに戻る](/)
+<ArticleList :articles="articles" />

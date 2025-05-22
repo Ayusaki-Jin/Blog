@@ -119,7 +119,7 @@ export function generateSidebar() {
         text: "雑学",
         collapsed: true,
         items: [
-          { text: "一覧", link: "/knowledge/" },
+          { text: "雑学一覧", link: "/knowledge/" },
           ...getItemsForDirectoryWithTitle("knowledge"),
         ],
       },

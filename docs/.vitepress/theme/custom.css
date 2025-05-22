@@ -13,3 +13,58 @@
 .dark .page-info {
   background-color: var(--vp-c-bg-soft);
 }
+
+/* custom.css */
+img.responsive-img-medium {
+  max-width: 50%;
+  /* 親要素の幅に対して50%の幅にする */
+  height: auto;
+  /* 高さは自動で調整 */
+  display: block;
+  /* 中央揃えしやすくするためなど */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img.responsive-img-small {
+  max-width: 200px;
+  /* 具体的なピクセル指定もできる */
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* custom.css */
+
+/* ページのメインタイトル (H1) の下に線を引く */
+/* .vp-doc の中の h1 タグを対象にする */
+.vp-doc h1 {
+  border-bottom: 1px solid var(--vp-c-divider);
+  /* 線の太さ、種類、色 */
+  padding-bottom: 1rem;
+  /* 線とH1文字の間の余白 */
+  margin-bottom: 1rem;
+  /* 線の下の余白 (記事リストや本文との間) */
+}
+
+/* custom.css */
+
+/* ドキュメントページのフッターの上の余白を調整する */
+.VPDocFooter {
+  margin-top: 16px !important;
+  /* ← 例えば 32px に変更！元の値より小さくする */
+  /* もっと詰めたかったら 24px とか 16px とか、いろいろ試してみてね！ */
+  /* !important を付けると、元のスタイルより優先されやすくなるよ */
+}
+
+/* VitePressデフォルトのH2のスタイルを調整 */
+.vp-doc h2 {
+  border-top: none !important;
+  /* 上の線を消す */
+  padding-top: 0 !important;
+  /* 上のパディングを消す (これは効いてるはず) */
+  margin-top: 0.0rem !important;
+  /* ★重要★ 上のマージンを調整！ (元の48pxより小さくする) */
+  /* この値を調整して、H1とH2の間の見た目を調整してね */
+}

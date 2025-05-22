@@ -83,11 +83,7 @@ export default defineConfig({
       next: "次のページ",
     },
 
-    editLink: {
-      pattern:
-        "https://github.com/あなたのユーザー名/リポジトリ名/edit/main/docs/:path",
-      text: "このページを編集",
-    },
-    sidebar: generateSidebar() 
+    editLink: false,
+    sidebar: generateSidebar(),
   },
 });

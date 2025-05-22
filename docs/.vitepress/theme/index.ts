@@ -1,13 +1,15 @@
-import DefaultTheme from 'vitepress/theme'
-import TagLinks from './components/TagLinks.vue'
-import LastUpdated from './components/LastUpdated.vue'
-import './custom.css' // 必要に応じて作成
+// docs/.vitepress/theme/index.ts
+import DefaultTheme from "vitepress/theme";
+import TagLinks from "./components/TagLinks.vue";
+import LastUpdated from "./components/LastUpdated.vue";
+import ArticleList from "./components/ArticleList.vue"; // これを追加！
+import "./custom.css";
 
 export default {
   ...DefaultTheme,
   enhanceApp({ app }) {
-    // コンポーネントをグローバル登録
-    app.component('TagLinks', TagLinks)
-    app.component('LastUpdated', LastUpdated)
-  }
-}
+    app.component("TagLinks", TagLinks);
+    app.component("LastUpdated", LastUpdated);
+    app.component("ArticleList", ArticleList); // これを追加！
+  },
+};
