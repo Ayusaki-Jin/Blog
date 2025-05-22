@@ -1,0 +1,15 @@
+/* カスタムスタイル設定 */
+:root {
+  --vp-c-brand: #646cff;
+  --vp-c-brand-light: #747bff;
+}
+
+/* 記事のスタイル調整 */
+.vp-doc p {
+  line-height: 1.8;
+}
+
+/* ダークモード調整 */
+.dark .page-info {
+  background-color: var(--vp-c-bg-soft);
+}
