@@ -2,6 +2,8 @@
 title: 小説作品一覧
 layout: doc
 editLink: false
+prev: false  # ← 前のページリンクを無効
+next: false  # ← 次のページリンクを無効
 ---
 
 # 小説作品一覧

@@ -109,7 +109,6 @@ export function generateSidebar() {
         text: "ブログ記事", // このセクションタイトルは固定
         collapsed: false,
         items: [
-          { text: "ブログ一覧", link: "/blog/" }, // 一覧ページは固定
           ...getItemsForDirectoryWithTitle("blog"), // blogフォルダ以下をタイトルベースで自動生成
         ],
       },
@@ -119,7 +118,6 @@ export function generateSidebar() {
         text: "雑学",
         collapsed: true,
         items: [
-          { text: "雑学一覧", link: "/knowledge/" },
           ...getItemsForDirectoryWithTitle("knowledge"),
         ],
       },
@@ -129,7 +127,6 @@ export function generateSidebar() {
         text: "小説作品",
         collapsed: false,
         items: [
-          { text: "作品一覧", link: "/novels/" },
           ...getItemsForDirectoryWithTitle("novels"),
         ],
       },

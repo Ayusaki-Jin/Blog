@@ -84,6 +84,12 @@ export default defineConfig({
     },
 
     editLink: false,
-    sidebar: generateSidebar(),
+     sidebar: generateSidebar(),
+    // サイドバーの表示設定
+    sidebarMenuLabel: "メニュー", // モバイルでのラベル
+
+    // もしくは、各ページで個別に制御したい場合は、
+    // 各indexページのフロントマターで sidebar: false にして、
+    // 記事ページでは sidebar: true のままにする
   },
 });
