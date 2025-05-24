@@ -9,6 +9,10 @@
   --vp-c-brand-light: #747bff;
 }
 
+/* ================================ */
+/* 基本スタイル                     */
+/* ================================ */
+
 .vp-doc p {
   line-height: 1.8;
 }
@@ -16,6 +20,18 @@
 .dark .page-info {
   background-color: var(--vp-c-bg-soft);
 }
+
+html {
+  overflow-y: scroll;
+}
+
+.curtain {
+  display: none !important;
+}
+
+/* ================================ */
+/* 画像レスポンシブ設定              */
+/* ================================ */
 
 img.responsive-img-medium {
   max-width: 50%;
@@ -34,44 +50,52 @@ img.responsive-img-small {
 }
 
 /* ================================ */
-/* 見出しスタイル                    */
+/* 見出しスタイル - 全レベル統一      */
 /* ================================ */
 
 .vp-doc h1 {
   border-bottom: none !important;
-  padding-bottom: 0.5rem !important;
-  margin-bottom: 1.5rem !important;
-  margin-top: 1rem !important;
+  padding-bottom: 0.25rem !important;
+  margin-bottom: 0.75rem !important;
+  margin-top: 0.75rem !important;
 }
 
 .vp-doc h2 {
   border-top: 1px solid var(--vp-c-divider) !important;
-  padding-top: 1.5rem !important;
-  margin-top: 2rem !important;
+  padding-top: 0.75rem !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.vp-doc h3,
+.vp-doc h4,
+.vp-doc h5,
+.vp-doc h6 {
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.5rem !important;
+  padding-top: 0 !important;
+}
+
+/* 強化版セレクタ */
+.VPDoc .vp-doc h1,
+.VPDoc .vp-doc h2,
+.VPDoc .vp-doc h3,
+.VPDoc .vp-doc h4,
+.VPDoc .vp-doc h5,
+.VPDoc .vp-doc h6,
+.content .vp-doc h1,
+.content .vp-doc h2,
+.content .vp-doc h3,
+.content .vp-doc h4,
+.content .vp-doc h5,
+.content .vp-doc h6 {
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.5rem !important;
 }
 
 /* ================================ */
-/* ナビゲーション                    */
+/* フッター・目次                    */
 /* ================================ */
-
-.VPNavBar,
-.VPNav,
-.VPNavBarTitle .title {
-  border-bottom: 1px solid var(--vp-c-divider) !important;
-  box-shadow: none !important;
-}
-
-.VPContent {
-  border-top: none !important;
-}
-
-/* ================================ */
-/* 基本設定                         */
-/* ================================ */
-
-html {
-  overflow-y: scroll;
-}
 
 .VPDocFooter {
   margin-top: 16px !important;
@@ -81,12 +105,73 @@ html {
   display: none !important;
 }
 
-.curtain {
+/* ================================ */
+/* ナビゲーション - 統一線システム    */
+/* ================================ */
+
+/* divider要素削除（二重線・ずれの原因） */
+.VPNav .divider,
+.VPNavBar .divider,
+div[class*="divider"] {
   display: none !important;
 }
 
+/* タイトル下線を画面全幅に延長 */
+.title[data-v-55e263fd] {
+  border-bottom: none !important;
+  position: relative;
+  overflow: visible;
+}
+
+.title[data-v-55e263fd]::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -200px;
+  width: calc(100vw + 400px);
+  height: 1px;
+  background: var(--vp-c-divider);
+  z-index: -1;
+}
+
 /* ================================ */
-/* 🔥 完全レイヤー化 - サイドバーを完全に浮かせる */
+/* 検索バー統一 - ホームページ基準    */
+/* ================================ */
+
+@media (min-width: 960px) {
+
+  /* 全ページの検索バーをホームと同じ位置に統一 */
+  .has-sidebar .VPNavBarSearch,
+  .layout-doc .VPNavBarSearch,
+  .layout-page .VPNavBarSearch {
+    margin-right: 116px !important;
+    /* ホームと同じマージン */
+    width: auto !important;
+    /* 幅は自然に */
+    max-width: none !important;
+    /* 制限解除 */
+  }
+}
+
+/* ================================ */
+/* レスポンシブ対応                  */
+/* ================================ */
+
+@media (max-width: 959px) {
+
+  /* モバイルでは統一線を非表示 */
+  .title[data-v-55e263fd]::after {
+    display: none !important;
+  }
+
+  /* 独自ハンバーガーメニューを隠す */
+  .VPNavBarHamburger {
+    display: none !important;
+  }
+}
+
+/* ================================ */
+/* 右側サイドバー - 完全レイヤー化    */
 /* ================================ */
 
 @media (min-width: 960px) {
@@ -96,7 +181,14 @@ html {
     display: flex !important;
   }
 
-  /* 🔥 サイドバーを完全に浮かせる（レイヤー化） */
+  /* ドキュメントコンテナの上余白調整 */
+  .VPDoc,
+  .VPDoc.has-sidebar,
+  .VPDoc.has-aside {
+    padding-top: 0.5rem !important;
+  }
+
+  /* サイドバーを完全レイヤー化 */
   .VPSidebar {
     position: fixed !important;
     top: var(--vp-nav-height) !important;
@@ -111,33 +203,12 @@ html {
     border-right: none !important;
     box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1) !important;
     z-index: 9999 !important;
-    /* 🔥 超高いz-index */
     padding-top: 0 !important;
     pointer-events: auto !important;
   }
 
   .custom-sidebar-open .VPSidebar {
     transform: translateX(0) !important;
-  }
-
-  /* 🔥 下のレイアウトは完全にVitePressデフォルトのまま */
-  /* 何も変更しない = サイドバーの影響を一切受けない */
-  .VPContent,
-  .VPContent.has-sidebar,
-  .VPDoc,
-  .VPDoc.has-aside,
-  .VPDocAside {
-    /* 一切のカスタマイズを削除！ */
-    /* VitePressのデフォルトレイアウトをそのまま使う */
-  }
-
-  /* 🔥 サイドバーが開いても閉じても、下のレイアウトは一切変更しない */
-  .custom-sidebar-open .VPContent,
-  .custom-sidebar-open .VPContent.has-sidebar,
-  .custom-sidebar-open .VPDoc,
-  .custom-sidebar-open .VPDoc.has-aside,
-  .custom-sidebar-open .VPDocAside {
-    /* 何も指定しない = デフォルトのまま */
   }
 }
 
@@ -167,74 +238,92 @@ html {
   padding-top: 0 !important;
 }
 
-/* H1の余白を調整 */
-.vp-doc h1 {
-  border-bottom: none !important;
-  padding-bottom: 0.5rem !important;
-  margin-bottom: 1rem !important;
-  /* ← 下の余白を小さく */
-  margin-top: 0.5rem !important;
-  /* ← 上の余白を小さく */
+/* タイトルaタグの領域を制限 */
+@media (min-width: 960px) {
+  .has-sidebar a.title[data-v-55e263fd] {
+    flex-shrink: 1 !important;     /* 縮小を許可 */
+    flex-grow: 0 !important;       /* 拡大を禁止 */
+    width: auto !important;        /* 幅を自動調整 */
+    max-width: 200px !important;   /* 最大幅を制限 */
+  }
 }
-
-/* 上の余白問題を即座に解決 */
+/* 超強力版！全ての可能性を潰す */
 @media (min-width: 960px) {
 
-  /* VPDocの上パディングを削除 */
-  .VPDoc,
-  .VPDoc.has-sidebar,
-  .VPDoc.has-aside {
-    padding-top: 1rem !important;
-    /* 48px → 16px に縮小 */
+  /* より具体的なセレクタで確実に効かせる */
+  .VPNavBar .has-sidebar a.title,
+  .layout-doc .VPNavBar a.title,
+  .layout-page .VPNavBar a.title,
+  .VPNavBarTitle a.title {
+    flex: 0 0 auto !important;
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+    width: auto !important;
+    min-width: auto !important;
+    max-width: 200px !important;
+    /* 強制的に幅制限 */
   }
 
-/* H1とH2の余白バランスを完璧に調整 */
-.vp-doc h1 {
-  border-bottom: none !important;
-  padding-bottom: 0.5rem !important;
-  margin-bottom: 1.5rem !important;
-  margin-top: 0.5rem !important;
-  /* H1の上余白を縮小 */
+  /* 親要素のflex設定も調整 */
+  .has-sidebar .VPNavBarTitle {
+    flex: 0 0 auto !important;
+    width: auto !important;
+  }
+
+  /* 検索窓の位置調整も強化 */
+  .has-sidebar .VPNavBarSearch {
+    margin-left: auto !important;
+    position: relative !important;
+    right: 116px !important;
+      /* 116pxから微調整 */
+    /* 強制的に左移動 */
+  }
+
+ /* ホームページでのみ検索窓を隠す */
+ .home .VPNavBarSearch,
+ .layout-home .VPNavBarSearch {
+   display: none !important;
+ }
+
+ /* または、より確実に */
+ .VPHome .VPNavBarSearch {
+   display: none !important;
+ }
+
+ /* さらに確実に */
+ body.layout-home .VPNavBarSearch {
+   display: none !important;
+ }
 }
 
-.vp-doc h2 {
-  border-top: 1px solid var(--vp-c-divider) !important;
+/* ヒーローセクションのテキスト部分を上に移動 */
+.VPHero .main {
+  padding-top: 2rem !important;
+  /* デフォルトより小さく */
+  margin-top: -2rem !important;
+  /* さらに上に */
+}
+
+/* または、より具体的に */
+.VPHome .VPHero .container .main {
+  transform: translateY(-20px) !important;
+  /* 20px上に移動 */
+}
+
+/* タイトル部分のみ調整 */
+.VPHero .name {
+  margin-top: -1rem !important;
+}
+/* ヒーローテキストと合わせてカード3つも上に */
+.VPHome .VPFeatures {
+  margin-top: -3rem !important;
+  /* カードも上に移動 */
   padding-top: 1rem !important;
-  /* H2の上パディングを適度に */
-  margin-top: 1.5rem !important;
-  /* H2の上マージンを適度に */
+  /* 少し余白残す */
 }
 
-/* VPDocコンテナの上パディングも調整 */
-@media (min-width: 960px) {
-
-  .VPDoc,
-  .VPDoc.has-sidebar,
-  .VPDoc.has-aside {
-    padding-top: 0.5rem !important;
-    /* さらに縮小 */
-  }
-}x → 16px */
-}
-
-/* 線の重複を解消 - シンプルにする */
-.VPNavBar {
-  border-bottom: 1px solid var(--vp-c-divider) !important;
-  box-shadow: none !important;
-}
-
-/* 不要な線を削除 */
-.VPNav {
-  border-bottom: none !important;
-  /* 重複を防ぐ */
-}
-
-.VPNavBarTitle .title {
-  border-bottom: none !important;
-}
-
-/* ::after疑似要素も削除 */
-.VPNavBar::after {
-  display: none !important;
-  /* 重複を防ぐ */
+/* または、より自然に */
+.VPFeatures .container {
+  transform: translateY(-30px) !important;
+  /* テキストと同じくらい上に */
 }

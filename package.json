@@ -19,6 +19,9 @@
     }
   },
   "dependencies": {
-    "gray-matter": "^4.0.3"
+    "@vueuse/motion": "^3.0.3",
+    "gray-matter": "^4.0.3",
+    "gsap": "^3.13.0",
+    "lucide-vue-next": "^0.511.0"
   }
 }
