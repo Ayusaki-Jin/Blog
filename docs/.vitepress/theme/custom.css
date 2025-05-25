@@ -106,7 +106,7 @@ img.responsive-img-small {
 }
 
 /* ================================ */
-/* ナビゲーション - 統一線システム    */
+/* ナビゲーション - 統一線システム強化版 */
 /* ================================ */
 
 /* divider要素削除（二重線・ずれの原因） */
@@ -116,22 +116,37 @@ div[class*="divider"] {
   display: none !important;
 }
 
-/* タイトル下線を画面全幅に延長 */
-.title[data-v-55e263fd] {
+/* タイトル下線を画面全幅に延長 - 強化版 */
+.VPNavBarTitle .title,
+.title[data-v-55e263fd],
+.title[data-v-b04e6c3d],
+a.title {
   border-bottom: none !important;
-  position: relative;
-  overflow: visible;
+  position: relative !important;
+  overflow: visible !important;
 }
 
-.title[data-v-55e263fd]::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: -200px;
-  width: calc(100vw + 400px);
-  height: 1px;
-  background: var(--vp-c-divider);
-  z-index: -1;
+/* 全ての統一線を最背面に統一 */
+.VPNavBarTitle .title::after,
+.title[data-v-55e263fd]::after,
+.title[data-v-b04e6c3d]::after,
+a.title::after,
+.layout-home .VPNavBarTitle .title::after,
+.VPHome .VPNavBarTitle .title::after,
+.layout-doc .VPNavBarTitle .title::after,
+.has-sidebar .VPNavBarTitle .title::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: -200px !important;
+  width: calc(100vw + 400px) !important;
+  height: 1px !important;
+  background: var(--vp-c-divider) !important;
+  z-index: -9999 !important;
+  pointer-events: none !important;
+    /* ← これが解決の鍵！ */
+  
+  /* 全部統一 */
 }
 
 /* ================================ */
@@ -327,3 +342,43 @@ div[class*="divider"] {
   transform: translateY(-30px) !important;
   /* テキストと同じくらい上に */
 }
+
+/* ドロップダウンメニューのz-indexを確実に上げる */
+.VPNavBarMenuGroup .VPNavBarMenuDropdown,
+.VPNavBar .VPMenu,
+.VPNavBar .VPMenuGroup {
+  z-index: 9999 !important;
+    /* 超高い値に設定 */
+    position: relative !important;
+}
+
+/* ドロップダウンメニュー専用修正 */
+.VPMenu {
+  z-index: 9999 !important;
+  position: relative !important;
+  background: var(--vp-c-bg) !important;
+  border: 1px solid var(--vp-c-divider) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ================================ */
+/* ドロップダウンメニュー安全修正     */
+/* ================================ */
+
+/* シンプルにz-indexだけ調整 */
+.menu[data-v-5691862c],
+.menu {
+  z-index: 1000 !important;
+  /* position や background は削除 */
+}
+
+.VPMenu[data-v-e0f2b3ec],
+.VPMenu {
+  z-index: 1001 !important;
+  /* position は削除 */
+}
+
+.VPNavBar {
+  z-index: 10 !important;
+}
+

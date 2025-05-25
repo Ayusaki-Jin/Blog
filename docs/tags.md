@@ -4,7 +4,7 @@ sidebar: false
 ---
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { data as postData } from './.vitepress/theme/data/tags.data.js'
 
 const selectedTag = ref(null)
@@ -14,12 +14,48 @@ const filteredPosts = computed(() => {
   return postData.tags[selectedTag.value]
 })
 
-// URLからタグを読み取る
-onMounted(() => {
-  if (location.hash) {
-    selectedTag.value = location.hash.slice(1)
+// URLエンコーディング関数
+const encodeTag = (tag) => {
+  return encodeURIComponent(tag)
+}
+
+const decodeTag = (encodedTag) => {
+  try {
+    return decodeURIComponent(encodedTag)
+  } catch (e) {
+    return encodedTag // デコードに失敗した場合はそのまま返す
   }
+}
+
+// URLからタグを読み取る（デコード対応）
+const updateSelectedTag = () => {
+  if (location.hash) {
+    const hashTag = location.hash.slice(1)
+    const decodedTag = decodeTag(hashTag)
+    
+    // 実際に存在するタグかチェック
+    if (postData.tags[decodedTag]) {
+      selectedTag.value = decodedTag
+    } else {
+      selectedTag.value = null
+    }
+  } else {
+    selectedTag.value = null
+  }
+}
+
+onMounted(() => {
+  updateSelectedTag()
+  
+  // ハッシュ変更を監視
+  window.addEventListener('hashchange', updateSelectedTag)
 })
+
+// タグクリック時の処理
+const selectTag = (tag) => {
+  selectedTag.value = tag
+  window.location.hash = encodeTag(tag)
+}
 </script>
 
 # タグ一覧
@@ -29,9 +65,9 @@ onMounted(() => {
     <a 
       v-for="tag in tags" 
       :key="tag"
-      :href="`#${tag}`"
+      :href="`#${encodeTag(tag)}`"
       :class="['tag', selectedTag === tag ? 'active' : '']"
-      @click="selectedTag = tag"
+      @click.prevent="selectTag(tag)"
     >
       {{ tag }} ({{ postData.tags[tag].length }})
     </a>
@@ -47,6 +83,9 @@ onMounted(() => {
     </ul>
   </div>
 </div>
+
+<!-- style部分は同じ -->
+
 
 <style>
 .tag-list {

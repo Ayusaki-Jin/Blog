@@ -8,11 +8,16 @@ const props = defineProps({
   }
 })
 
+// URLエンコーディング関数追加
+const encodeTag = (tag) => {
+  return encodeURIComponent(tag)
+}
+
 const tagLinks = computed(() => {
   return props.tags.map(tag => {
     return {
       text: tag,
-      link: `/tags.html#${tag}`
+      link: `/tags.html#${encodeTag(tag)}`  // ← URLエンコード
     }
   })
 })
@@ -21,16 +26,14 @@ const tagLinks = computed(() => {
 <template>
   <div class="tag-links">
     <span v-if="tags.length" class="tags-label">タグ: </span>
-    <a 
-      v-for="(tag, index) in tagLinks" 
-      :key="index"
-      :href="tag.link"
-      class="tag-link"
-    >
+    <a v-for="(tag, index) in tagLinks" :key="index" :href="tag.link" class="tag-link">
       {{ tag.text }}
     </a>
   </div>
 </template>
+
+<!-- style部分は同じ -->
+
 
 <style scoped>
 .tag-links {

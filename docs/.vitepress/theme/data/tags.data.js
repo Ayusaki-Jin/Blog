@@ -1,6 +1,10 @@
 import { createContentLoader } from 'vitepress'
 
-export default createContentLoader('blog/**/*.md', {
+export default createContentLoader([
+    'blog/**/*.md',    // ブログ記事
+    'knowledge/**/*.md', // 豆知識
+    'novels/**/*.md',  // 小説作品
+], {
     excerpt: true,
     transform(rawData) {
         // 全記事からタグ情報を抽出
