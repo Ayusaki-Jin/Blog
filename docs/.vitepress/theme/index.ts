@@ -3,7 +3,6 @@ import TagLinks from "./components/TagLinks.vue";
 import LastUpdated from "./components/LastUpdated.vue";
 import ArticleList from "./components/ArticleList.vue";
 import Pagination from "./components/Pagination.vue";
-import DayNightMascot from "./components/DayNightMascot.vue"; // ← 追加
 import "./custom.css";
 
 export default {
@@ -13,7 +12,6 @@ export default {
     app.component("LastUpdated", LastUpdated);
     app.component("ArticleList", ArticleList);
     app.component("Pagination", Pagination);
-    app.component("DayNightMascot", DayNightMascot); // ← 追加
   },
   setup() {
     if (typeof window !== "undefined") {
