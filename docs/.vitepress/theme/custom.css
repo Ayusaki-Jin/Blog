@@ -50,7 +50,7 @@ img.responsive-img-small {
 }
 
 /* ================================ */
-/* 見出しスタイル - 全レベル統一      */
+/* 見出しスタイル                    */
 /* ================================ */
 
 .vp-doc h1 {
@@ -76,23 +76,6 @@ img.responsive-img-small {
   padding-top: 0 !important;
 }
 
-/* 強化版セレクタ */
-.VPDoc .vp-doc h1,
-.VPDoc .vp-doc h2,
-.VPDoc .vp-doc h3,
-.VPDoc .vp-doc h4,
-.VPDoc .vp-doc h5,
-.VPDoc .vp-doc h6,
-.content .vp-doc h1,
-.content .vp-doc h2,
-.content .vp-doc h3,
-.content .vp-doc h4,
-.content .vp-doc h5,
-.content .vp-doc h6 {
-  margin-top: 0.75rem !important;
-  margin-bottom: 0.5rem !important;
-}
-
 /* ================================ */
 /* フッター・目次                    */
 /* ================================ */
@@ -105,88 +88,33 @@ img.responsive-img-small {
   display: none !important;
 }
 
-/* ================================ */
-/* ナビゲーション - 統一線システム強化版 */
-/* ================================ */
 
-/* divider要素削除（二重線・ずれの原因） */
-.VPNav .divider,
-.VPNavBar .divider,
-div[class*="divider"] {
-  display: none !important;
-}
-
-/* タイトル下線を画面全幅に延長 - 強化版 */
-.VPNavBarTitle .title,
-.title[data-v-55e263fd],
-.title[data-v-b04e6c3d],
-a.title {
-  border-bottom: none !important;
-  position: relative !important;
-  overflow: visible !important;
-}
-
-/* 全ての統一線を最背面に統一 */
-.VPNavBarTitle .title::after,
-.title[data-v-55e263fd]::after,
-.title[data-v-b04e6c3d]::after,
-a.title::after,
-.layout-home .VPNavBarTitle .title::after,
-.VPHome .VPNavBarTitle .title::after,
-.layout-doc .VPNavBarTitle .title::after,
-.has-sidebar .VPNavBarTitle .title::after {
-  content: '' !important;
-  position: absolute !important;
-  bottom: 0 !important;
-  left: -200px !important;
-  width: calc(100vw + 400px) !important;
-  height: 1px !important;
-  background: var(--vp-c-divider) !important;
-  z-index: -9999 !important;
-  pointer-events: none !important;
-    /* ← これが解決の鍵！ */
-  
-  /* 全部統一 */
-}
-
-/* ================================ */
-/* 検索バー統一 - ホームページ基準    */
-/* ================================ */
-
-@media (min-width: 960px) {
-
-  /* 全ページの検索バーをホームと同じ位置に統一 */
-  .has-sidebar .VPNavBarSearch,
-  .layout-doc .VPNavBarSearch,
-  .layout-page .VPNavBarSearch {
-    margin-right: 116px !important;
-    /* ホームと同じマージン */
-    width: auto !important;
-    /* 幅は自然に */
-    max-width: none !important;
-    /* 制限解除 */
-  }
-}
 
 /* ================================ */
 /* レスポンシブ対応                  */
 /* ================================ */
 
 @media (max-width: 959px) {
-
-  /* モバイルでは統一線を非表示 */
-  .title[data-v-55e263fd]::after {
-    display: none !important;
-  }
-
-  /* 独自ハンバーガーメニューを隠す */
-  .VPNavBarHamburger {
+  .VPNavBarTitle .title::after {
     display: none !important;
   }
 }
 
 /* ================================ */
-/* 右側サイドバー - 完全レイヤー化    */
+/* 検索バー調整                      */
+/* ================================ */
+
+@media (min-width: 960px) {
+  .has-sidebar .VPNavBarSearch {
+    margin-right: 116px !important;
+  }
+
+  .layout-home .VPNavBarSearch {
+    display: none !important;
+  }
+}
+/* ================================ */
+/* 右側サイドバー - 完全版          */
 /* ================================ */
 
 @media (min-width: 960px) {
@@ -209,6 +137,7 @@ a.title::after,
     top: var(--vp-nav-height) !important;
     right: 0 !important;
     left: auto !important;
+    /* ← これが抜けてた！ */
     width: 280px !important;
     height: calc(100vh - var(--vp-nav-height)) !important;
     transform: translateX(100%) !important;
@@ -216,7 +145,9 @@ a.title::after,
     background: var(--vp-c-bg) !important;
     border-left: 1px solid var(--vp-c-divider) !important;
     border-right: none !important;
+    /* 右側のボーダー削除 */
     box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1) !important;
+    /* 影も追加 */
     z-index: 9999 !important;
     padding-top: 0 !important;
     pointer-events: auto !important;
@@ -255,130 +186,89 @@ a.title::after,
 
 /* タイトルaタグの領域を制限 */
 @media (min-width: 960px) {
-  .has-sidebar a.title[data-v-55e263fd] {
-    flex-shrink: 1 !important;     /* 縮小を許可 */
-    flex-grow: 0 !important;       /* 拡大を禁止 */
-    width: auto !important;        /* 幅を自動調整 */
-    max-width: 200px !important;   /* 最大幅を制限 */
-  }
-}
-/* 超強力版！全ての可能性を潰す */
-@media (min-width: 960px) {
-
-  /* より具体的なセレクタで確実に効かせる */
-  .VPNavBar .has-sidebar a.title,
-  .layout-doc .VPNavBar a.title,
-  .layout-page .VPNavBar a.title,
-  .VPNavBarTitle a.title {
-    flex: 0 0 auto !important;
+  .has-sidebar a.title {
+    flex-shrink: 1 !important;
     flex-grow: 0 !important;
-    flex-shrink: 0 !important;
     width: auto !important;
-    min-width: auto !important;
     max-width: 200px !important;
-    /* 強制的に幅制限 */
   }
-
-  /* 親要素のflex設定も調整 */
-  .has-sidebar .VPNavBarTitle {
-    flex: 0 0 auto !important;
-    width: auto !important;
-  }
-
-  /* 検索窓の位置調整も強化 */
-  .has-sidebar .VPNavBarSearch {
-    margin-left: auto !important;
-    position: relative !important;
-    right: 116px !important;
-      /* 116pxから微調整 */
-    /* 強制的に左移動 */
-  }
-
- /* ホームページでのみ検索窓を隠す */
- .home .VPNavBarSearch,
- .layout-home .VPNavBarSearch {
-   display: none !important;
- }
-
- /* または、より確実に */
- .VPHome .VPNavBarSearch {
-   display: none !important;
- }
-
- /* さらに確実に */
- body.layout-home .VPNavBarSearch {
-   display: none !important;
- }
 }
 
-/* ヒーローセクションのテキスト部分を上に移動 */
+/* ================================ */
+/* ヒーローセクション                */
+/* ================================ */
+
 .VPHero .main {
   padding-top: 2rem !important;
-  /* デフォルトより小さく */
   margin-top: -2rem !important;
-  /* さらに上に */
 }
 
-/* または、より具体的に */
-.VPHome .VPHero .container .main {
-  transform: translateY(-20px) !important;
-  /* 20px上に移動 */
-}
-
-/* タイトル部分のみ調整 */
-.VPHero .name {
-  margin-top: -1rem !important;
-}
-/* ヒーローテキストと合わせてカード3つも上に */
 .VPHome .VPFeatures {
   margin-top: -3rem !important;
-  /* カードも上に移動 */
   padding-top: 1rem !important;
-  /* 少し余白残す */
 }
 
-/* または、より自然に */
-.VPFeatures .container {
-  transform: translateY(-30px) !important;
-  /* テキストと同じくらい上に */
+/* ================================ */
+/* 統一線システム - divider拡張方式  */
+/* ================================ */
+
+/* 【ロジック概要】
+ * 1. ナビゲーション要素削除でタイトル下線消し
+ * 2. divider要素を疑似要素で延長してメニュー下線基準で統一線
+ * 3. 元のdivider伸ばしてるので個別ページではリファレンス貫通しない
+ */
+
+/* 全ナビゲーション要素の線を強制削除 */
+.VPNavBar * {
+  border-bottom: none !important;
 }
 
-/* ドロップダウンメニューのz-indexを確実に上げる */
-.VPNavBarMenuGroup .VPNavBarMenuDropdown,
-.VPNavBar .VPMenu,
-.VPNavBar .VPMenuGroup {
-  z-index: 9999 !important;
-    /* 超高い値に設定 */
-    position: relative !important;
-}
-
-/* ドロップダウンメニュー専用修正 */
-.VPMenu {
-  z-index: 9999 !important;
+/* divider要素を画面全幅に拡張 */
+.VPNav .divider,
+.VPNavBar .divider {
+  display: block !important;
   position: relative !important;
-  background: var(--vp-c-bg) !important;
-  border: 1px solid var(--vp-c-divider) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+  width: 100% !important;
+  height: 1px !important;
+  background: var(--vp-c-divider) !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* ================================ */
-/* ドロップダウンメニュー安全修正     */
-/* ================================ */
-
-/* シンプルにz-indexだけ調整 */
-.menu[data-v-5691862c],
-.menu {
-  z-index: 1000 !important;
-  /* position や background は削除 */
+/* divider要素を疑似要素で画面全幅に */
+.VPNav .divider::before,
+.VPNavBar .divider::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100vw !important;
+  width: 300vw !important;
+  height: 1px !important;
+  background: var(--vp-c-divider) !important;
+  z-index: -1 !important;
 }
 
-.VPMenu[data-v-e0f2b3ec],
-.VPMenu {
-  z-index: 1001 !important;
-  /* position は削除 */
+/* 【問題点】
+ * ①ホームページでリファレンス貫通するようになる→消して解決
+ * ②レスポンシブで二重線になる
+ * ③二重線の中にハンバーガーメニューとトップに戻るボタンが表示（ダサい）
+ */
+
+/* ホームページでdivider統一線 */
+.VPNavBar.home .divider {
+  display: block !important;
+  position: relative !important;
+  width: 100% !important;
+  height: 1px !important;
+  background: var(--vp-c-divider) !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-.VPNavBar {
-  z-index: 10 !important;
+
+/* ホームは完全に線なし（VitePressデフォルトの美しさ） */
+.VPNavBar.home .divider,
+.VPNavBar.home .divider::before {
+  display: none !important;
 }
 
