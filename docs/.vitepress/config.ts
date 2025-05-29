@@ -93,17 +93,3 @@ export default defineConfig({
     // 記事ページでは sidebar: true のままにする
   },
 });
-
-/* モバイルでカスタム機能を完全無効化 */
-@media (max-width: 959px) {
-  /* 統一線以外の全カスタムCSSを無効化 */
-  .VPSidebar,
-  .VPNavBarHamburger {
-    display: none !important;
-  }
-  
-  /* 他のカスタム設定もリセット */
-  .has-sidebar a.title {
-    max-width: none !important;
-  }
-}

@@ -1,4 +1,4 @@
-/* docs/.vitepress/theme/custom.css */
+/* docs/.vitepress/theme/custom.css - 完全整理版 */
 
 /* ================================ */
 /* カスタムスタイル設定              */
@@ -37,16 +37,14 @@ img.responsive-img-medium {
   max-width: 50%;
   height: auto;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 img.responsive-img-small {
   max-width: 200px;
   height: auto;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 /* ================================ */
@@ -56,23 +54,20 @@ img.responsive-img-small {
 .vp-doc h1 {
   border-bottom: none !important;
   padding-bottom: 0.25rem !important;
-  margin-bottom: 0.75rem !important;
-  margin-top: 0.75rem !important;
+  margin: 0.75rem 0 !important;
 }
 
 .vp-doc h2 {
   border-top: 1px solid var(--vp-c-divider) !important;
   padding-top: 0.75rem !important;
-  margin-top: 0.75rem !important;
-  margin-bottom: 0.5rem !important;
+  margin: 0.75rem 0 0.5rem 0 !important;
 }
 
 .vp-doc h3,
 .vp-doc h4,
 .vp-doc h5,
 .vp-doc h6 {
-  margin-top: 0.75rem !important;
-  margin-bottom: 0.5rem !important;
+  margin: 0.75rem 0 0.5rem 0 !important;
   padding-top: 0 !important;
 }
 
@@ -86,119 +81,6 @@ img.responsive-img-small {
 
 .vp-doc.novels .VPDocAside {
   display: none !important;
-}
-
-
-
-/* ================================ */
-/* レスポンシブ対応                  */
-/* ================================ */
-
-@media (max-width: 959px) {
-  .VPNavBarTitle .title::after {
-    display: none !important;
-  }
-}
-
-/* ================================ */
-/* 検索バー調整                      */
-/* ================================ */
-
-@media (min-width: 960px) {
-
-  /* 個別ページ：検索窓位置調整 */
-  .has-sidebar .VPNavBarSearch,
-  .VPNavBar.has-sidebar .VPNavBarSearch {
-    margin-right: 116px !important;
-    position: relative !important;
-  }
-
-  /* ホームページ：検索窓非表示（正しいセレクタ） */
-  /* .VPNavBar.home .VPNavBarSearch,
-  .is-home .VPNavBarSearch,
-  body.is-home .VPNavBarSearch {
-    display: none !important;
-  }
-} */
-/* ================================ */
-/* 右側サイドバー - 完全版          */
-/* ================================ */
-
-@media (min-width: 960px) {
-
-  /* ハンバーガーメニューを表示 */
-  .VPNavBarHamburger {
-    display: flex !important;
-  }
-
-  /* ドキュメントコンテナの上余白調整 */
-  .VPDoc,
-  .VPDoc.has-sidebar,
-  .VPDoc.has-aside {
-    padding-top: 0.5rem !important;
-  }
-
-  /* サイドバーを完全レイヤー化 */
-  .VPSidebar {
-    position: fixed !important;
-    top: var(--vp-nav-height) !important;
-    right: 0 !important;
-    left: auto !important;
-    /* ← これが抜けてた！ */
-    width: 280px !important;
-    height: calc(100vh - var(--vp-nav-height)) !important;
-    transform: translateX(100%) !important;
-    transition: transform 0.3s ease !important;
-    background: var(--vp-c-bg) !important;
-    border-left: 1px solid var(--vp-c-divider) !important;
-    border-right: none !important;
-    /* 右側のボーダー削除 */
-    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1) !important;
-    /* 影も追加 */
-    z-index: 9999 !important;
-    padding-top: 0 !important;
-    pointer-events: auto !important;
-  }
-
-  .custom-sidebar-open .VPSidebar {
-    transform: translateX(0) !important;
-  }
-}
-
-/* ================================ */
-/* サイドバー内部スタイル              */
-/* ================================ */
-
-.VPSidebar .VPSidebarNav {
-  background: var(--vp-c-bg) !important;
-  padding: 0.5rem 1rem !important;
-  margin-top: 0 !important;
-}
-
-.VPSidebar .VPSidebarNav>*:first-child,
-.VPSidebar .group:first-child {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-.VPSidebar .group:first-child .title {
-  margin-top: 0 !important;
-  padding-top: 0.5rem !important;
-}
-
-.VPSidebar .title {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-/* タイトルaタグの領域を制限 */
-@media (min-width: 960px) {
-  .has-sidebar a.title {
-    flex-shrink: 1 !important;
-    flex-grow: 0 !important;
-    width: auto !important;
-    max-width: 200px !important;
-  }
 }
 
 /* ================================ */
@@ -216,29 +98,15 @@ img.responsive-img-small {
 }
 
 /* ================================ */
-/* 統一線システム - divider拡張方式  */
+/* 統一線システム - デスクトップ版    */
 /* ================================ */
 
-/* 【ロジック概要】
- * 1. ナビゲーション要素削除でタイトル下線消し
- * 2. divider要素を疑似要素で延長してメニュー下線基準で統一線
- * 3. 元のdivider伸ばしてるので個別ページではリファレンス貫通しない
- */
-
-/* 問題のセレクタを置き換え */
-/* .VPNavBar * {
-  border-bottom: none !important;
-} */
-
-/* より具体的に修正 */
+/* ナビゲーション要素の線を削除（検索窓は除外） */
 .VPNavBar .VPNavBarTitle *,
 .VPNavBar .VPNavBarMenu *,
-.VPNavBar .VPNavBarMenuGroup *,
-.VPNavBar .divider * {
+.VPNavBar .VPNavBarMenuGroup * {
   border-bottom: none !important;
 }
-
-
 
 /* divider要素を画面全幅に拡張 */
 .VPNav .divider,
@@ -265,104 +133,101 @@ img.responsive-img-small {
   z-index: -1 !important;
 }
 
-/* 【問題点】
- * ①ホームページでリファレンス貫通するようになる→消して解決
- * ②レスポンシブで二重線になる
- * ③二重線の中にハンバーガーメニューとトップに戻るボタンが表示（ダサい）
- */
-
-/* ホームページでdivider統一線 */
-.VPNavBar.home .divider {
-  display: block !important;
-  position: relative !important;
-  width: 100% !important;
-  height: 1px !important;
-  background: var(--vp-c-divider) !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-
-/* ホームは完全に線なし（VitePressデフォルトの美しさ） */
+/* ホームページは統一線なし */
 .VPNavBar.home .divider,
 .VPNavBar.home .divider::before {
   display: none !important;
 }
 
-/* モバイルで統一線を完全削除 */
+/* ================================ */
+/* デスクトップ専用設定              */
+/* ================================ */
+
+@media (min-width: 960px) {
+
+  /* 検索窓位置調整 */
+  .has-sidebar .VPNavBarSearch {
+    margin-right: 116px !important;
+  }
+
+  /* カスタムハンバーガーメニュー表示 */
+  .VPNavBarHamburger {
+    display: flex !important;
+  }
+
+  /* 右サイドバー設定 */
+  .VPSidebar {
+    position: fixed !important;
+    top: var(--vp-nav-height) !important;
+    right: 0 !important;
+    left: auto !important;
+    width: 280px !important;
+    height: calc(100vh - var(--vp-nav-height)) !important;
+    transform: translateX(100%) !important;
+    transition: transform 0.3s ease !important;
+    background: var(--vp-c-bg) !important;
+    border-left: 1px solid var(--vp-c-divider) !important;
+    border-right: none !important;
+    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1) !important;
+    z-index: 9999 !important;
+    padding-top: 0 !important;
+  }
+
+  .custom-sidebar-open .VPSidebar {
+    transform: translateX(0) !important;
+  }
+
+  /* サイドバー内部スタイル */
+  .VPSidebar .VPSidebarNav {
+    background: var(--vp-c-bg) !important;
+    padding: 0.5rem 1rem !important;
+    margin-top: 0 !important;
+  }
+
+  /* タイトル領域制限 */
+  .has-sidebar a.title {
+    max-width: 200px !important;
+  }
+
+  /* ドキュメント上余白調整 */
+  .VPDoc.has-sidebar {
+    padding-top: 0.5rem !important;
+  }
+}
+
+/* ================================ */
+/* モバイル専用設定                  */
+/* ================================ */
+
 @media (max-width: 959px) {
 
+  /* 統一線を完全削除 */
   .VPNav .divider,
   .VPNavBar .divider,
   .VPNav .divider::before,
   .VPNavBar .divider::before {
     display: none !important;
-    content: none !important;
-    width: 0 !important;
-    left: 0 !important;
   }
 
-  /* bodyの横スクロールも強制無効化 */
-  body {
-    overflow-x: hidden !important;
-    max-width: 100vw !important;
-  }
-
-  /* 全要素の横幅制限 */
-  * {
-    max-width: 100vw !important;
-  }
-}
-
-/* ================================ */
-/* モバイルナビゲーション修正        */
-/* ================================ */
-
-@media (max-width: 959px) {
-
-  /* カスタム右サイドバーを完全無効化 */
-  .VPSidebar {
-    display: none !important;
-    transform: translateX(100%) !important;
-  }
-
-  /* カスタムハンバーガーメニューを無効化 */
-  .VPNavBarHamburger {
-    display: none !important;
-  }
-
-  /* VitePressデフォルトハンバーガーを復活 */
-  .VPNavBar .menu-icon,
-  .VPNavBar .hamburger {
-    display: block !important;
-  }
-
-  /* カスタムサイドバー関連クラスをリセット */
-  .custom-sidebar-open {
-    /* カスタムクラスの効果を無効化 */
-  }
-
-  /* bodyの横スクロール防止 */
-  body {
-    overflow-x: hidden !important;
-    max-width: 100vw !important;
-  }
-}
-
-/* モバイルでカスタム機能を完全無効化 */
-@media (max-width: 959px) {
-
-  /* 統一線以外の全カスタムCSSを無効化 */
+  /* カスタム機能を無効化 */
   .VPSidebar,
   .VPNavBarHamburger {
     display: none !important;
   }
 
-  /* 他のカスタム設定もリセット */
+  /* カスタム設定をリセット */
   .has-sidebar a.title {
     max-width: none !important;
   }
+
+  /* 横スクロール防止 */
+  body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  * {
+    max-width: 100vw !important;
+  }
 }
 
-
-}

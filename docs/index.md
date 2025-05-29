@@ -3,11 +3,8 @@ layout: home
 title: お兄ちゃんのブログ
 hero:
   name: お兄ちゃんの
-  text: 素敵なブログ＆小説サイト
+  text: ブログ＆小説サイト
   tagline: 思いのままに綴る日常と創作の世界
-  image:
-    src: /logo.png
-    alt: サイトロゴ
   actions:
     - theme: brand
       text: ブログを見る
