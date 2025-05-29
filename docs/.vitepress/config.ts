@@ -16,7 +16,7 @@ export default defineConfig({
   // ---------- テーマ設定 ----------
   themeConfig: {
     siteTitle: "お兄ちゃんのサイト",
-    logo: "/logo.png",
+    // logo: "/logo.png",
 
     // ---------- ナビゲーションバー設定 ----------
     nav: [
